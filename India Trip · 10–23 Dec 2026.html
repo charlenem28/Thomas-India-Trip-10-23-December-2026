@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>India Trip · 10–23 Dec 2026</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#faf7f2;--card:#fff;--ink:#1d2a2f;--mut:#6b787d;--acc:#0e7c7b;--acc2:#e07a2f;--line:#e6e0d6;--warn:#fff1de;--warnink:#9a4d0c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a1d;--card:#1a2629;--ink:#eef2f1;--mut:#93a3a8;--acc:#4fc3c0;--acc2:#f0a15f;--line:#2b3b3f;--warn:#3a2a17;--warnink:#f0b37a}}
+:root[data-theme="dark"]{--bg:#111a1d;--card:#1a2629;--ink:#eef2f1;--mut:#93a3a8;--acc:#4fc3c0;--acc2:#f0a15f;--line:#2b3b3f;--warn:#3a2a17;--warnink:#f0b37a}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;max-width:640px;margin:0 auto;padding-bottom:84px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{padding:20px 16px 12px;background:linear-gradient(135deg,#0e7c7b,#1b5e8c);color:#fff;border-radius:0 0 22px 22px}
+header h1{margin:0;font-size:24px;font-family:Georgia,serif}
+header p{margin:4px 0 0;opacity:.9;font-size:14px}
+.route{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;font-size:12px}
+.route span{background:rgba(255,255,255,.18);padding:3px 9px;border-radius:99px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;scrollbar-width:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:6px 12px;text-align:center;font:inherit;font-size:12px;cursor:pointer;min-width:54px}
+.chip b{display:block;font-size:17px}
+.chip.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+main{padding:0 16px}
+h2{font-family:Georgia,serif;font-size:20px;margin:8px 0 2px}
+.sub{color:var(--mut);font-size:14px;margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.it{display:flex;gap:12px}
+.t{flex:0 0 74px;font-weight:600;font-size:13px;color:var(--acc)}
+.it b{display:block}
+.pl{color:var(--mut);font-size:13px}
+.note{font-size:13px;color:var(--mut);margin-top:2px}
+.tbc{display:inline-block;background:var(--warn);color:var(--warnink);font-size:11px;font-weight:600;padding:1px 8px;border-radius:99px;margin-top:4px}
+a.map{color:var(--acc);font-size:13px;text-decoration:none;font-weight:600}
+.tag{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--acc2);font-weight:700}
+.ck{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.ck:last-child{border:0}
+.ck input{width:20px;height:20px;accent-color:var(--acc)}
+.ck input:checked+span{text-decoration:line-through;color:var(--mut)}
+.bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin:6px 0 14px}
+.bar i{display:block;height:100%;background:var(--acc);width:0;transition:width .2s}
+nav{position:fixed;bottom:0;left:0;right:0;max-width:640px;margin:0 auto;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);z-index:20}
+nav button{flex:1;border:0;background:none;color:var(--mut);padding:10px 2px 8px;font:inherit;font-size:11px;cursor:pointer}
+nav button span{display:block;font-size:20px}
+nav button.on{color:var(--acc);font-weight:700}
+</style></head>
+<body>
+<header><h1>India Trip</h1><p>10–23 December 2026</p>
+<div class="route"><span>New York</span><span>Dubai</span><span>Kochi</span><span>Dubai</span><span>New York</span></div></header>
+<div class="chips" id="chips"></div>
+<main id="main"></main>
+<nav id="nav"></nav>
+<script>
+const M=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const P={jfk:'JFK Airport Terminal 4',dxb:'Dubai International Airport Terminal 3',cok:'Cochin International Airport',hy:'Grand Hyatt Kochi Bolgatty',sh:'Sheraton hotel Kochi',off:'HubSpire Kochi office'};
+// [time, title, place, note, tbc, mapQuery]
+const D=[
+{d:'10 Dec',w:'Thu',h:'Depart New York',i:[['11:00 PM','Emirates EK202 · JFK T4 → Dubai T3','JFK Terminal 4','Be at the airport 3 hours before departure.',0,P.jfk]]},
+{d:'11 Dec',w:'Fri',h:'Dubai connection',i:[['8:25 PM','Arrive Dubai T3 (EK202)','Dubai T3','Prepare for connecting flight.',0,P.dxb],['8:25–9:40 PM','Connection to EK532','Dubai T3','Tight 1 h 15 min connection. Go straight to the gate.',0,P.dxb],['9:40 PM','Emirates EK532 · Dubai → Kochi','Dubai T3','Confirm flight duration on ticket.',1,P.dxb]]},
+{d:'12 Dec',w:'Sat',h:'Arrive in Kochi',i:[['3:00 AM','Arrive Kochi (COK)','Cochin International Airport','',0,P.cok],['3:00–4:15 AM','Immigration, baggage, customs','COK','Estimate; depends on queues.',0,P.cok],['4:15–5:15 AM','PG picks you up → PG’s home','COK → PG’s home','About 1 hour.',0],['8:00–9:00 AM','Breakfast with Jain and PJ','PG’s home','',0],['9:00–11:30 AM','Rest and personal time','PG’s home','Recovery after overnight travel.',0],['12:00–1:00 PM','Lunch at Asha’s','Asha’s parents','Confirm venue and transport.',1],['1:00 PM →','Family / personal time (overnight)','Asha’s parents','',0]]},
+{d:'13 Dec',w:'Sun',h:'Family visits',i:[['11:00 AM','PJ picks you up','Asha’s parents','Confirm addresses and route.',1],['11:30 AM–12:30 PM','Family visit','Auntie Ruby’s home','Address TBD.',1],['12:30–1:30 PM','Drive to Uncle Roy’s home','On the road','Time to be confirmed.',1],['1:30–2:30 PM','Lunch','Uncle Roy’s home','Flexible.',0],['2:30 PM','PJ picks you up → PG’s home','Uncle Roy’s → PG’s home','Confirm time and duration.',1],['Evening','Rest (overnight)','PG’s home','',0]]},
+{d:'14 Dec',w:'Mon',h:'Drive to Kochi · office',i:[['Morning','Drive to Kochi','On the road','Original sheet lists this under Monday; confirm departure time.',1],['8:30–9:30 AM','Breakfast with Viml','Near HubSpire Kochi office','Confirm reservation and venue.',1,P.off],['9:30 AM →','Meet the team','HubSpire Kochi office','',0,P.off],['TBD','Check in','Sheraton hotel','',1,P.sh]]},
+{d:'15 Dec',w:'Tue',h:'Office · dinner',i:[['8:30–9:30 AM','Breakfast with Renie','Kochi, venue TBD','Confirm venue.',1],['9:30 AM →','Transfer / office setup','HubSpire Kochi office','',0,P.off],['TBD','Dinner with Aja & family','Address TBD','Confirm venue.',1],['TBD','Back to hotel','Sheraton hotel','',0,P.sh]]},
+{d:'16 Dec',w:'Wed',h:'Office · cocktails',i:[['8:30–9:30 AM','Breakfast with Suraj','Kochi, venue TBD','Confirm venue.',1],['9:30 AM →','Transfer / office setup','HubSpire Kochi office','',0,P.off],['5:30–6:30 PM','Wrap-up and transfer','Office → accommodation','Confirm transport.',1],['8:00 PM →','Cocktail bar with Subin, Tony, Viml, Suraj','Venue TBD','2 hours. Everyone is free to join. Confirm venue and attendees.',1]]},
+{d:'17 Dec',w:'Thu',h:'Office · dinner',i:[['9:30 AM →','Office day','HubSpire Kochi office','',0,P.off],['TBD','Dinner with PG and Jane','Venue TBD','',1]]},
+{d:'18 Dec',w:'Fri',h:'Hotel move · team party',i:[['12:00 PM','Check out','Sheraton hotel','',0,P.sh],['12:30 PM','Check in (30 min)','Grand Hyatt Kochi Bolgatty','Confirm transport and early check-in.',1,P.hy],['TBD','HubSpire annual team party','Grand Hyatt Kochi Bolgatty','Original plan says 2:00 PM–late. Confirm start, venue and finish.',1,P.hy]]},
+{d:'19 Dec',w:'Sat',h:'Personal day',i:[['All day','Personal time','Grand Hyatt / Kochi','',0,P.hy]]},
+{d:'20 Dec',w:'Sun',h:'Personal day',i:[['All day','Personal time','Grand Hyatt / Kochi','',0,P.hy]]},
+{d:'21 Dec',w:'Mon',h:'SLT meeting',i:[['10:00–11:00 AM','SLT meeting','Grand Hyatt Kochi Bolgatty','Proposed timing.',1,P.hy],['TBD','Emmanuel checks in','Grand Hyatt Kochi Bolgatty','',1,P.hy]]},
+{d:'22 Dec',w:'Tue',h:'Kochi → Dubai',i:[['5:00 AM','Check out with Emmanuel','Grand Hyatt Kochi Bolgatty','30 minutes.',0,P.hy],['5:30 AM','Drive to COK airport','Hyatt → COK','About 1 hour.',0,P.cok],['6:30 AM','Airport check-in (3 h before flight)','Cochin International Airport','',0,P.cok],['9:40 AM','Emirates EK531 · COK → Dubai','COK','About 2.5 hours.',0,P.cok],['12:10 PM','Arrive Dubai','Dubai DXB','Verify e-ticket.',0,P.dxb],['TBD','Check in with Emmanuel','5-star hotel near DXB','Hotel TBD.',1],['TBD','Dinner with Emmanuel','Venue TBD','Confirm location and reservation.',1]]},
+{d:'23 Dec',w:'Wed',h:'Home to New York',i:[['4:30 AM','Check out and transfer to airport','Dubai hotel → DXB','About 1 hour.',0,P.dxb],['5:30–8:30 AM','Check-in, security, boarding buffer','Dubai T3','Verify ticket.',0,P.dxb],['8:30 AM','Emirates EK201 · DXB → JFK T4','Dubai T3','About 14 h 25 min (your sheet says 4 h 25). Verify on ticket.',1,P.dxb],['1:55 PM','Arrive New York JFK T4','JFK Terminal 4','Verify e-ticket.',0,P.jfk],['1:55–3:00 PM','Immigration, baggage, customs','JFK T4','Estimate; allow for queues.',0,P.jfk],['3:00 PM →','Uber home','JFK → home','About 1 hour.',0]]}
+];
+const B=[
+['Flights',[['EK202','10 Dec · 11:00 PM','JFK T4 → DXB T3'],['EK532','11 Dec · 9:40 PM','DXB T3 → COK'],['EK531','22 Dec · 9:40 AM','COK → DXB'],['EK201','23 Dec · 8:30 AM','DXB → JFK T4']]],
+['Hotels',[['Sheraton hotel','14–18 Dec','Check-in 14 Dec · check-out 18 Dec, 12:00 PM'],['Grand Hyatt Kochi Bolgatty','18–22 Dec','Check-in 18 Dec 12:30 PM · check-out 22 Dec 5:00 AM'],['5-star hotel near DXB','22–23 Dec','Hotel TBD · check-out 23 Dec 4:30 AM']]],
+['Meals and meetings to confirm',[['Breakfast with Viml','14 Dec · 8:30 AM','Near Kochi office'],['Breakfast with Renie','15 Dec · 8:30 AM','Venue TBD'],['Dinner with Aja & family','15 Dec','Venue TBD'],['Breakfast with Suraj','16 Dec · 8:30 AM','Venue TBD'],['Cocktails with Subin, Tony, Viml, Suraj','16 Dec · 8:00 PM','Venue TBD'],['Dinner with PG and Jane','17 Dec','Venue TBD'],['HubSpire annual team party','18 Dec','Start time and venue TBD'],['SLT meeting','21 Dec · 10:00 AM','Grand Hyatt'],['Dinner with Emmanuel','22 Dec','Dubai, venue TBD']]]];
+const MP=[['Cochin International Airport',P.cok],['Grand Hyatt Kochi Bolgatty',P.hy],['Sheraton hotel, Kochi',P.sh],['HubSpire Kochi office',P.off],['Dubai International Airport T3',P.dxb],['JFK Airport Terminal 4',P.jfk]];
+const A=[['Family',['12 Dec · Breakfast with Jain and PJ','12 Dec · Lunch at Asha’s parents','13 Dec · Visit Auntie Ruby','13 Dec · Lunch at Uncle Roy’s']],['Work',['14 Dec · Meet the Kochi team','15–17 Dec · Office days','21 Dec · SLT meeting']],['Social',['14–16 Dec · Breakfasts with Viml, Renie, Suraj','15 Dec · Dinner with Aja & family','16 Dec · Cocktail bar night','17 Dec · Dinner with PG and Jane','18 Dec · HubSpire annual team party','22 Dec · Dinner with Emmanuel']],['Free time',['19 Dec · Personal day','20 Dec · Personal day','12 Dec · Rest and recovery']]];
+const K=[['Documents',['Passport (6+ months valid)','India visa / e-visa','Printed e-tickets and hotel bookings','Travel insurance','Credit/debit cards and some cash','Contact list and addresses']],['Clothing',['Light cotton shirts and trousers','Smart-casual for office days','Outfit for team party and cocktails','Light jacket for flights and AC','Comfortable walking shoes','Sleepwear and underwear','Swimwear for Hyatt']],['Tech',['Phone and chargers','Universal plug adapter (India and UAE)','Power bank','Laptop and charger','Headphones','eSIM / roaming plan']],['Health and toiletries',['Prescription meds','Stomach and cold basics','Sunscreen and insect repellent','Toiletries (carry-on size)','Hand sanitiser','Reusable water bottle']],['Gifts and extras',['Small gifts for family hosts','Neck pillow and eye mask','Snacks for the long flights','Extra bag space for the return']]];
+const $=id=>document.getElementById(id);
+let tab='days',day=0,done={};
+try{done=JSON.parse(localStorage.getItem('packed')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('packed',JSON.stringify(done))}catch(e){}}
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function chips(){const c=$('chips');c.style.display=tab==='days'?'flex':'none';c.innerHTML=D.map((x,n)=>`<button class="chip${n===day?' on':''}" onclick="day=${n};render()">${x.w}<b>${x.d.split(' ')[0]}</b></button>`).join('')}
+function render(){
+ chips();let h='';
+ if(tab==='days'){const x=D[day];h=`<h2>${x.d} · ${x.h}</h2><p class="sub">${x.w}day, ${x.i.length} items</p>`+x.i.map(r=>`<div class="card it"><div class="t">${r[0]}</div><div><b>${esc(r[1])}</b><div class="pl">${esc(r[2])}</div>${r[3]?`<div class="note">${esc(r[3])}</div>`:''}${r[4]?'<span class="tbc">To confirm</span> ':''}${r[5]?`<div><a class="map" href="${M(r[5])}" target="_blank" rel="noopener">Open map →</a></div>`:''}</div></div>`).join('')}
+ if(tab==='book'){h='<h2>Reservations</h2><p class="sub">Flights, hotels and plans. “TBD” items still need booking.</p>'+B.map(g=>`<div class="tag">${g[0]}</div>`+g[1].map(r=>`<div class="card"><b>${r[0]}</b><div class="pl">${r[1]}</div><div class="note">${r[2]}</div>${/TBD/.test(r[2])?'<span class="tbc">To confirm</span>':''}</div>`).join('')).join('')}
+ if(tab==='map'){h='<h2>Maps</h2><p class="sub">Tap to open in your maps app.</p>'+MP.map(m=>`<div class="card"><b>${m[0]}</b><div><a class="map" href="${m[1]}" target="_blank" rel="noopener">Open in Google Maps →</a></div></div>`).join('')}
+ if(tab==='act'){h='<h2>Activities</h2><p class="sub">Everything planned outside of travel.</p>'+A.map(g=>`<div class="tag">${g[0]}</div><div class="card">${g[1].map(s=>`<div class="ck">${s}</div>`).join('')}</div>`).join('')}
+ if(tab==='pack'){const all=K.flatMap(g=>g[1]),n=all.filter(s=>done[s]).length;h=`<h2>Packing list</h2><p class="sub">${n} of ${all.length} packed</p><div class="bar"><i style="width:${n/all.length*100}%"></i></div>`+K.map(g=>`<div class="tag">${g[0]}</div><div class="card">${g[1].map(s=>`<label class="ck"><input type="checkbox" ${done[s]?'checked':''} data-s="${s.replace(/"/g,'&quot;')}"><span>${s}</span></label>`).join('')}</div>`).join('')}
+ $('main').innerHTML=h;
+ document.querySelectorAll('input[data-s]').forEach(i=>i.onchange=()=>{done[i.dataset.s]=i.checked;save();render()});
+ $('nav').innerHTML=[['days','🗓','Days'],['book','🎫','Bookings'],['map','📍','Maps'],['act','🎉','Activities'],['pack','🧳','Packing']].map(t=>`<button class="${tab===t[0]?'on':''}" onclick="tab='${t[0]}';render();scrollTo(0,0)"><span>${t[1]}</span>${t[2]}</button>`).join('');
+}
+render();
+</script></body></html>
